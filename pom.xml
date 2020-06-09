@@ -10,9 +10,27 @@
     <packaging>pom</packaging>
 
     <properties>
+        <apache-shardingsphere-version>4.1.0</apache-shardingsphere-version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-core-common</artifactId>
+            <version>${apache-shardingsphere-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-core</artifactId>
+            <version>${apache-shardingsphere-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-core-api</artifactId>
+            <version>${apache-shardingsphere-version}</version>
+        </dependency>
 
     </dependencies>
 
