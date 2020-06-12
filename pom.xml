@@ -37,6 +37,8 @@
     <modules>
         <module>a-study-sharding-common</module>
         <module>b-study-sharding-basis</module>
+        <module>c-study-sharding-boot</module>
+        <module>d-sharding-level-database</module>
     </modules>
 
     <build>

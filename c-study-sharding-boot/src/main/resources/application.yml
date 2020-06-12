@@ -1,0 +1,48 @@
+# ------------------------------
+# |      mybatis配置            |
+# ------------------------------
+#mybatis-plus:
+#  mapper-locations: classpath:mapper/*Mapper.xml
+#  type-aliases-package: com.liu.study.sharding.jdbc.entity
+
+
+
+# ------------------------------
+# |      sharding配置           |
+# ------------------------------
+# 配饰数据库源，并给数据源设置别名
+spring:
+  shardingsphere:
+    datasource:
+      names: sharding1
+
+      # 配置数据库连接器、驱动、mysql8需要加上时区。
+      sharding1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/sharding?serverTimezone=GMT&amp
+        username: root
+        password: 123456
+
+    # 指定user表的分布的情况
+    sharding:
+      tables:
+        user:
+          actual-data-nodes: sharding1.user_$->{1..2}
+
+          # user表id生成策略与算法
+          key-generator:
+            column: uid
+            type: SNOWFLAKE
+
+          # 指定分片
+          table-strategy:
+            inline:
+              sharding-column: uid
+              algorithm-expression: user_$->{uid % 2 + 1}
+    # 配置日志。
+    props:
+      sql:
+        show: true
+  main:
+    allow-bean-definition-overriding: true
